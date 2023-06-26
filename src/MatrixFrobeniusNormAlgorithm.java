@@ -1,6 +1,9 @@
 import java.util.Random;
 import java.util.Scanner;
-import parcs.*;
+import parcs.AM;
+import parcs.AMInfo;
+import parcs.Communicator;
+import parcs.Point;
 
 public class MatrixFrobeniusNormAlgorithm implements AM {
 
@@ -34,7 +37,7 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
 
         // Создание связи с хост-сервером
         try {
-            Communicator comm = new Communicator(nodes);
+            Communicator comm = new Communicator(null);
             Point point = comm.createPoint();
 
             // Распараллеливание вычислений на демонах
@@ -42,12 +45,12 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
 
             long startTime = System.currentTimeMillis();
             for (int i = 0; i < numNodes; i++) {
-                Point node = new Point();
+                Point node = new Point(nodes[i].address(), nodes[i].port());
                 point.export(size, node);
                 point.export(a, node);
                 point.send(node);
                 AMInfo nodeInfo = node.execute("MatrixFrobeniusNormTask");
-                String nodeNormStr = (String) nodeInfo.receive();
+                String nodeNormStr = nodeInfo.parent.readUTF();
                 double nodeNorm = Double.parseDouble(nodeNormStr);
                 norm += nodeNorm;
             }
