@@ -3,8 +3,6 @@ import parcs.*;
 
 public class MatrixFrobeniusNormAlgorithm implements AM {
 
-ini
-Copy
 public static void main(String[] args) {
     NodeInfo[] nodes = new NodeInfo[]{
         new NodeInfo("10.164.0.7", 8888),
