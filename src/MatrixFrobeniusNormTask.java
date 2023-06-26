@@ -4,8 +4,8 @@ import java.util.Random;
 public class MatrixFrobeniusNormTask implements AM {
 
     public void run(AMInfo info) {
-        int[] size = (int[]) info.parent.readObject();
-        int[][] a = (int[][]) info.parent.readObject();
+        int[] size = (int[]) info.parent.read();
+        int[][] a = (int[][]) info.parent.read();
         double norm = 0.0;
 
         // Обчислення норми Фробеніуса
