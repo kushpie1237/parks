@@ -6,9 +6,9 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
 
     @Override
     public void run(AMInfo info) {
-        NodeInfo[] nodes = new NodeInfo[]{
-                new NodeInfo("10.164.0.7", 8888),
-                new NodeInfo("10.164.0.6", 8888)
+        Point[] nodes = new Point[]{
+                new Point("10.164.0.7", 8888),
+                new Point("10.164.0.6", 8888)
         };
 
         // Запрос размерности матрицы
@@ -43,8 +43,8 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
             long startTime = System.currentTimeMillis();
             for (int i = 0; i < numNodes; i++) {
                 Point node = new Point();
-                point.exportObject((Serializable) size, node);
-                point.exportObject((Serializable) a, node);
+                point.export(size, node);
+                point.export(a, node);
                 point.send(node);
                 AMInfo nodeInfo = node.execute("MatrixFrobeniusNormTask");
                 String nodeNormStr = (String) nodeInfo.receive();
