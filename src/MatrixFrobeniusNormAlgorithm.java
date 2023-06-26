@@ -2,7 +2,6 @@ import java.util.Random;
 import java.util.Scanner;
 import parcs.*;
 
-
 public class MatrixFrobeniusNormAlgorithm implements AM {
 
     @Override
@@ -44,10 +43,12 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
             long startTime = System.currentTimeMillis();
             for (int i = 0; i < numNodes; i++) {
                 Point node = new Point();
+                point.exportObject((Serializable) size, node);
+                point.exportObject((Serializable) a, node);
                 point.send(node);
-                AMInfo nodeInfo = node.execute(new MatrixFrobeniusNormTask(serializeSize(size)));
-                nodeInfo.waitFor();
-                double nodeNorm = nodeInfo.getReturnValue(Double.class);
+                AMInfo nodeInfo = node.execute("MatrixFrobeniusNormTask");
+                String nodeNormStr = (String) nodeInfo.receive();
+                double nodeNorm = Double.parseDouble(nodeNormStr);
                 norm += nodeNorm;
             }
 
@@ -65,9 +66,5 @@ public class MatrixFrobeniusNormAlgorithm implements AM {
         }
 
         scanner.close();
-    }
-
-    private String serializeSize(int[] size) {
-        return size[0] + "," + size[1];
     }
 }
