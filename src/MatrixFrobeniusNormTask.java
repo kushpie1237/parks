@@ -1,4 +1,5 @@
 import parcs.*;
+import java.util.Random;
 
 public class MatrixFrobeniusNormTask implements AM {
 
