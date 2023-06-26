@@ -1,5 +1,5 @@
-import java.util.;
-import parcs.;
+import java.util.*;
+import parcs.*;
 
 public class MatrixFrobeniusNormAlgorithm implements AM {
 
