@@ -1,11 +1,11 @@
-import parcs.*;
-import java.util.Random;
+import parcs.AM;
+import parcs.AMInfo;
 
 public class MatrixFrobeniusNormTask implements AM {
 
     public void run(AMInfo info) {
-        int[] size = (int[]) info.parent.read();
-        int[][] a = (int[][]) info.parent.read();
+        int[] size = (int[]) info.parent.readObject();
+        int[][] a = (int[][]) info.parent.readObject();
         double norm = 0.0;
 
         // Обчислення норми Фробеніуса
@@ -18,7 +18,7 @@ public class MatrixFrobeniusNormTask implements AM {
         norm = Math.sqrt(norm);
 
         // Повернення результату
-        info.parent.write(Double.toString(norm));
+        info.parent.writeUTF(Double.toString(norm));
     }
 
 }
