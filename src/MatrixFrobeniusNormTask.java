@@ -2,8 +2,6 @@ import parcs.*;
 
 public class MatrixFrobeniusNormTask implements AM {
 
-ini
-Copy
 private String sizeStr;
 
 public MatrixFrobeniusNormTask(String sizeStr) {
@@ -15,8 +13,7 @@ int[] size = deserializeSize(sizeStr);
 int[][] a = new int[size[0]][size[1]];
 double norm = 0.0;
 
-ini
-Copy
+
 java.util.Random rnd = new java.util.Random();
 
 // Заполнение матрицы случайными числами
