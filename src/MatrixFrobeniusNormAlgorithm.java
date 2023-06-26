@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-import parcs.*
+import parcs.*;
 
 
 public class MatrixFrobeniusNormAlgorithm implements AM {
